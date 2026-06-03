@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# do-tool uninstaller — removes everything cleanly
+# do-sh uninstaller — removes everything cleanly
 # Run with: bash ~/.local/share/do-tool/uninstall.sh
-# Or one-liner: curl -fsSL https://raw.githubusercontent.com/ethanmccartney/do-tool/main/uninstall.sh | bash
+# Or one-liner: curl -fsSL https://raw.githubusercontent.com/Master-Pr0grammer/do-sh/main/uninstall.sh | bash
 
 set -euo pipefail
 
@@ -17,14 +17,14 @@ BIN_DIR="$HOME/.local/bin"
 
 echo -e "
 ${BOLD}${RED}┌─────────────────────────────────────────┐
-│         do-tool  uninstaller            │
+│           do-sh  uninstaller            │
 └─────────────────────────────────────────┘${RESET}
 "
 
 # ── confirm ────────────────────────────────────────────────────────────────────
 # skip prompt if running non-interactively (piped from curl)
 if [[ -t 0 ]]; then
-    read -rp "  This will remove do-tool completely. Continue? [y/N] " confirm
+    read -rp "  This will remove do-sh completely. Continue? [y/N] " confirm
     echo ""
     case "${confirm,,}" in
         y|yes) ;;
@@ -89,6 +89,6 @@ done
 
 # ── done ──────────────────────────────────────────────────────────────────────
 echo ""
-echo -e "${BOLD}${GREEN}  do-tool has been completely removed.${RESET}"
+echo -e "${BOLD}${GREEN}  do-sh has been completely removed.${RESET}"
 echo -e "  ${DIM}Open a new terminal for shell changes to take effect.${RESET}"
 echo ""

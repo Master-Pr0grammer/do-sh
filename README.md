@@ -1,8 +1,8 @@
-# do-tool
+# do-sh
 
 > Plain-English → shell command, powered by a local LLM. No cloud, no subscriptions, runs on cheap hardware.
 
-By Ethan McCartney — https://github.com/ethanmccartney/do-tool
+By Ethan McCartney — https://github.com/Master-Pr0grammer/do-sh
 
 ```
 do list all files and their sizes
@@ -24,7 +24,7 @@ The model stays loaded in memory for **5 minutes** after last use, then unloads 
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ethanmccartney/do-tool/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Master-Pr0grammer/do-sh/main/install.sh | bash
 ```
 
 The script downloads a precompiled `llama.cpp` binary and the LFM2.5 Q8_0 model, then installs the `do` command to `~/.local/bin`. Everything lives in `~/.local/share/do-tool` — no root required, no system files touched.
