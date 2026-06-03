@@ -5,15 +5,15 @@
 By Ethan McCartney — https://github.com/Master-Pr0grammer/do-sh
 
 ```
-do list all files and their sizes
-do show disk usage of each folder here
-do find all .log files modified in the last 7 days
-do show which processes are using the most memory
+ask list all files and their sizes
+ask show disk usage of each folder here
+ask find all .log files modified in the last 7 days
+ask show which processes are using the most memory
 ```
 
 ## How it works
 
-You type `do` followed by what you want in plain English. A local LLM ([Unsloth LFM2.5-1.2B-Instruct Q8_0](https://huggingface.co/unsloth/LFM2.5-1.2B-Instruct-GGUF), ~1.3 GB) generates a shell command. Then:
+You type `ask` followed by what you want in plain English. A local LLM ([Unsloth LFM2.5-1.2B-Instruct Q8_0](https://huggingface.co/unsloth/LFM2.5-1.2B-Instruct-GGUF), ~1.3 GB) generates a shell command. Then:
 
 - **Safe read-only commands** (`ls`, `find`, `df`, `grep`, etc.) — the command is extracted from the stream the moment it's generated, checked against the whitelist, and run immediately. Generation stops early; the explanation is never even computed.
 - **Anything else** — the explanation streams in parallel while the safety check runs. By the time you're asked to approve, the explanation is already there. No second round-trip to the model.
@@ -27,7 +27,7 @@ The model stays loaded in memory for **5 minutes** after last use, then unloads 
 curl -fsSL https://raw.githubusercontent.com/Master-Pr0grammer/do-sh/main/install.sh | bash
 ```
 
-The script downloads a precompiled `llama.cpp` binary and the LFM2.5 Q8_0 model, then installs the `do` command to `~/.local/bin`. Everything lives in `~/.local/share/do-tool` — no root required, no system files touched.
+The script downloads a precompiled `llama.cpp` binary and the LFM2.5 Q8_0 model, then installs the `ask` command to `~/.local/bin`. Everything lives in `~/.local/share/do-tool` — no root required, no system files touched.
 
 First run: ~2–4 seconds to load the model. Subsequent runs within 5 minutes: nearly instant.
 
@@ -42,23 +42,23 @@ First run: ~2–4 seconds to load the model. Subsequent runs within 5 minutes: n
 
 ```bash
 # Files
-do list all files recursively with sizes
-do show hidden files in this directory
-do find files larger than 100MB
+ask list all files recursively with sizes
+ask show hidden files in this directory
+ask find files larger than 100MB
 
 # Disk & system
-do show disk usage of each folder sorted by size
-do show how much RAM is free
-do list running processes sorted by CPU usage
+ask show disk usage of each folder sorted by size
+ask show how much RAM is free
+ask list running processes sorted by CPU usage
 
 # Searching
-do find all python files changed in the last week
-do search for the word "error" in all log files here
-do show the last 50 lines of syslog
+ask find all python files changed in the last week
+ask search for the word "error" in all log files here
+ask show the last 50 lines of syslog
 
 # Network
-do show what ports are open
-do show my local IP address
+ask show what ports are open
+ask show my local IP address
 ```
 
 ## How the streaming output works

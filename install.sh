@@ -170,10 +170,10 @@ done
 EOF
 chmod +x "$INSTALL_DIR/reaper.sh"
 
-# ── the `do` command ──────────────────────────────────────────────────────────
-cat > "$BIN_DIR/do" << 'EOF'
+# ── the `ask` command ──────────────────────────────────────────────────────────
+cat > "$BIN_DIR/ask" << 'EOF'
 #!/usr/bin/env bash
-# do-sh — plain-english → shell command
+# ask — plain-english → shell command
 # https://github.com/Master-Pr0grammer/do-sh
 
 set -euo pipefail
@@ -237,10 +237,10 @@ is_blocked() {
 
 # ── usage ─────────────────────────────────────────────────────────────────────
 if [[ $# -eq 0 ]]; then
-    echo -e "${BOLD}do${RESET} — plain-english shell commands"
-    echo -e "  ${CYAN}do list all files and their sizes${RESET}"
-    echo -e "  ${CYAN}do show disk usage of each folder here${RESET}"
-    echo -e "  ${CYAN}do find all log files modified in the last week${RESET}"
+    echo -e "${BOLD}ask${RESET} — plain-english shell commands"
+    echo -e "  ${CYAN}ask list all files and their sizes${RESET}"
+    echo -e "  ${CYAN}ask show disk usage of each folder here${RESET}"
+    echo -e "  ${CYAN}ask find all log files modified in the last week${RESET}"
     exit 0
 fi
 
@@ -284,7 +284,7 @@ USER_PROMPT="Linux shell command for: $QUERY"
 #   4. If the caller signals STOP (via a temp file), kills the stream
 #   5. Otherwise continues accumulating until </why> and emits WHY:<explanation>
 
-STOP_FILE="$(mktemp /tmp/do-stop-XXXXXX)"
+STOP_FILE="$(mktemp /tmp/ask-stop-XXXXXX)"
 rm -f "$STOP_FILE"   # exists = stop; not-exists = keep going
 
 RESPONSE="$(python3 - "$PORT" "$STOP_FILE" << 'PYEOF'
@@ -443,7 +443,7 @@ case "${answer,,}" in
         ;;
 esac
 EOF
-chmod +x "$BIN_DIR/do"
+chmod +x "$BIN_DIR/ask"
 
 # ── uninstaller ───────────────────────────────────────────────────────────────
 cat > "$INSTALL_DIR/uninstall.sh" << 'EOF'
@@ -496,12 +496,12 @@ pkill -f "do-tool/reaper.sh" 2>/dev/null || true
 success "Processes cleared"
 
 # ── remove binary ──────────────────────────────────────────────────────────────
-info "Removing 'do' command…"
-if [[ -f "$BIN_DIR/do" ]]; then
-    rm -f "$BIN_DIR/do"
-    success "Removed $BIN_DIR/do"
+info "Removing 'ask' command…"
+if [[ -f "$BIN_DIR/ask" ]]; then
+    rm -f "$BIN_DIR/ask"
+    success "Removed $BIN_DIR/ask"
 else
-    echo -e "  ${DIM}($BIN_DIR/do not found, skipping)${RESET}"
+    echo -e "  ${DIM}($BIN_DIR/ask not found, skipping)${RESET}"
 fi
 
 # ── remove install dir ────────────────────────────────────────────────────────
@@ -515,7 +515,7 @@ fi
 
 # ── remove temp files ─────────────────────────────────────────────────────────
 info "Cleaning temp files…"
-rm -f /tmp/do-stop-* 2>/dev/null || true
+rm -f /tmp/ask-stop-* 2>/dev/null || true
 success "Temp files cleared"
 
 # ── remove PATH line from shell rc ────────────────────────────────────────────
@@ -550,12 +550,12 @@ echo -e "${BOLD}${GREEN}┌─────────────────�
 │         Installation complete!          │
 └─────────────────────────────────────────┘${RESET}"
 echo ""
-echo -e "  Try it:  ${CYAN}${BOLD}do list all files and their sizes${RESET}"
-echo -e "  Or:      ${CYAN}${BOLD}do show how much disk space each folder is using${RESET}"
+echo -e "  Try it:  ${CYAN}${BOLD}ask list all files and their sizes${RESET}"
+echo -e "  Or:      ${CYAN}${BOLD}ask show how much disk space each folder is using${RESET}"
 echo ""
 echo -e "  ${DIM}Model stays warm for 5 minutes after last use.${RESET}"
 echo -e "  ${DIM}Uninstall: bash ~/.local/share/do-tool/uninstall.sh${RESET}"
 echo -e "  ${DIM}Or:        curl -fsSL https://raw.githubusercontent.com/Master-Pr0grammer/do-sh/main/uninstall.sh | bash${RESET}"
 echo ""
-warn "If 'do' isn't found yet, run: source ~/.bashrc  (or open a new terminal)"
+warn "If 'ask' isn't found yet, run: source ~/.bashrc  (or open a new terminal)"
 echo ""

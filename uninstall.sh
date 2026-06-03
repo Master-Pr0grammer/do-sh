@@ -47,12 +47,12 @@ pkill -f "do-tool/reaper.sh" 2>/dev/null || true
 success "Processes cleared"
 
 # ── remove binary ──────────────────────────────────────────────────────────────
-info "Removing 'do' command…"
-if [[ -f "$BIN_DIR/do" ]]; then
-    rm -f "$BIN_DIR/do"
-    success "Removed $BIN_DIR/do"
+info "Removing 'ask' command…"
+if [[ -f "$BIN_DIR/ask" ]]; then
+    rm -f "$BIN_DIR/ask"
+    success "Removed $BIN_DIR/ask"
 else
-    echo -e "  ${DIM}($BIN_DIR/do not found, skipping)${RESET}"
+    echo -e "  ${DIM}($BIN_DIR/ask not found, skipping)${RESET}"
 fi
 
 # ── remove install dir ────────────────────────────────────────────────────────
@@ -66,7 +66,7 @@ fi
 
 # ── remove temp files ─────────────────────────────────────────────────────────
 info "Cleaning temp files…"
-rm -f /tmp/do-stop-* 2>/dev/null || true
+rm -f /tmp/ask-stop-* 2>/dev/null || true
 success "Temp files cleared"
 
 # ── remove PATH line from shell rc ────────────────────────────────────────────
